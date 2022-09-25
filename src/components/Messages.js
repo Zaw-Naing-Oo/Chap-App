@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Message from './Message'
 import { ChatContext } from '../context/ChatContext'
 import { db } from '../firebase';
-import { doc, getDoc } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 
 const Messages = () => {
 
@@ -12,14 +12,9 @@ const Messages = () => {
     useEffect(() => {
 
       const getMessages = async () => {
-        const docRef = doc(db, "chats", data.chatId);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          setMessages(docSnap.data().messages);
-        } else {
-          console.log("No such document!");
-        }
+        onSnapshot(doc(db, "chats", data.chatId), (doc) => {
+          setMessages(doc.data().messages);
+        });
       }
       getMessages();
 

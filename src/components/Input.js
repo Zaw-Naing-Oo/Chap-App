@@ -26,11 +26,10 @@ const Input = () => {
 
       uploadTask.on(
         (error) => {
-          console.log(error);
+          // console.log(error);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            console.log(downloadURL)
             await updateDoc(doc(db, "chats", data.chatId), {
               messages: arrayUnion({
                 id: uuid(),

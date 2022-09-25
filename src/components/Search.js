@@ -21,7 +21,6 @@ const Search = () => {
         setUser(doc.data());
       });
     } catch (error) {
-      console.log(error);
        setErr(true);
     }
 

@@ -23,7 +23,7 @@ body {
 }
 
 .formContainer {
-    background-color: #a7bcff;
+    background-color: #26001B;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -40,15 +40,16 @@ body {
     gap: 10px;
     align-items: center;
 
+
     .logo {
-      color: #5d5b8d;
+      color: #810034;
       font-weight: bold;
       font-size: 24px;
 
     }
 
     .title {
-      color: #5d5b8d;
+      color: #810034;
       font-size: 12px;
     }
 
@@ -61,14 +62,14 @@ body {
         padding: 15px;
         border: none;
         width: 250px;
-        border-bottom: 1px solid #26001B;
+        border-bottom: 1px solid #810034;
         &::placeholder {
           color: rgb(175, 175, 175);
         }
       }
 
       button {
-        background-color: #7b96ec;
+        background-color: #810034;
         color: white;
         padding: 10px;
         font-weight: bold;
@@ -80,7 +81,7 @@ body {
         display: flex;
         align-items: center;
         gap: 10px;
-        color: #8da4f1;
+        color: #810034;
         font-size: 12px;
         cursor: pointer;
 
@@ -90,7 +91,7 @@ body {
       }
     }
     p {
-      color: #5d5b8d;
+      color: #FF005C;
       font-size: 12px;
       margin-top: 10px;
     }

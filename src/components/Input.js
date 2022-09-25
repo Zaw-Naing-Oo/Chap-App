@@ -17,66 +17,6 @@ const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
 
-  // const handleSend = async () => {
-  //   if(image) {
-
-  //     const storage = getStorage();
-  //     const storageRef = ref(storage, uuid());
-  
-  //     const uploadTask = uploadBytesResumable(storageRef, image);
-  
-  //     uploadTask.on( 
-  //       (error) => {
-  //         console.log(error);
-  //       }, 
-  //       () => {
-
-  //         getDownloadURL(uploadTask.snapshot.ref).then( async (downloadURL) => {
-  
-  //           await updateDoc( doc(db, "chats", data.chatId), {
-  //             messages: arrayUnion({
-  //               id : uuid(),
-  //               text,
-  //               senderId : currentUser.uid,
-  //               date : Timestamp.now(),
-  //               img : downloadURL
-  //             })
-  //           });
-  //         });
-  //       }
-  //     );
-      
-  //    } else {
-  //       await updateDoc( doc(db, "chats", data.chatId), {
-  //         messages: arrayUnion({
-  //           id : uuid(),
-  //           text,
-  //           senderId : currentUser.uid,
-  //           date : Timestamp.now(),
-  //         }),
-  //     });
-  // }
-
-
-  // await updateDoc(doc(db, "userChats", currentUser.uid), {
-  //   [data.chatId + ".lastMessage"]: {
-  //     text,
-  //   },
-  //   [data.chatId + ".date"]: serverTimestamp(),
-  // });
-
-  // await updateDoc(doc(db, "userChats", data.user.uid), {
-  //   [data.chatId + ".lastMessage"]: {
-  //     text,
-  //   },
-  //   [data.chatId + ".date"]: serverTimestamp(),
-  // });
-
-  //    setText("");
-  //    setImage(null);
-     
-  // }
-
 
   const handleSend = async () => {
     if (img) {

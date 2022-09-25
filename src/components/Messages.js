@@ -8,7 +8,6 @@ const Messages = () => {
 
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
-  // console.log(data);
  
     useEffect(() => {
 
@@ -17,18 +16,14 @@ const Messages = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          // console.log("Document data:", docSnap.data());
           setMessages(docSnap.data().messages);
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       }
       getMessages();
 
     }, [data.chatId]);
-
-    // console.log(messages);  
 
     return (
       <div className='messages'>

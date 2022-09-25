@@ -10,7 +10,6 @@ const Chats = () => {
 
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
-  // console.log(currentUser)
 
   const handleSelect = (user) => {
     dispatch({type: "CHANGE_USER", payload: user})
@@ -19,7 +18,6 @@ const Chats = () => {
   useEffect(() => {
    const getChats = () => {
     const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
-      // console.log("Current data: ", doc.data());
        setChats(doc.data());
     });
 
@@ -28,13 +26,9 @@ const Chats = () => {
     }
 
    }
-
-   currentUser.uid && getChats();
+    currentUser.uid && getChats();
 
   }, [currentUser.uid]);
-
-  // console.log(Object.entries(chats))
-  // console.log(chats);
 
 
   return (

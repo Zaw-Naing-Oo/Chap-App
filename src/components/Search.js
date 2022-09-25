@@ -13,16 +13,12 @@ const Search = () => {
 
   const handleSearch = async () => {
 
-    // const userRef = collection(db, "users");
     const q = query(collection(db, "users"), where("displayName", "==", userName));
 
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.id, " => ", doc.data());
         setUser(doc.data());
-        // console.log(doc.data())
       });
     } catch (error) {
       console.log(error);
@@ -84,7 +80,7 @@ const Search = () => {
          setErr(true);
       };
       
-      // setErr(true);
+      setErr(false);
       setUser(null);
       setUseName("");
   }

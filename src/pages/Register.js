@@ -12,6 +12,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [err, setErr] = useState(false);
+  const [passErr, setPassErr] = useState(false); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +23,11 @@ const Register = () => {
     
 
     try {
+    if(password.length < 8) {
+      setPassErr(true);
+      return;
+    }
+    setPassErr(false);
     const res = await createUserWithEmailAndPassword(auth, email, password)
 
     const date = new Date().getTime();
@@ -36,11 +42,6 @@ const Register = () => {
       }, 
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then( async (downloadURL) => {
-
-          // this is photoUrl
-          // console.log(downloadURL);
-
-          // console.log(res);
 
           await updateProfile(res.user, {
             displayName,
@@ -57,14 +58,11 @@ const Register = () => {
           });
 
           await setDoc(doc(db, "userChats", res.user.uid), {});
+          setErr(false);
           navigate("/");
-
-
         });
       }
     );
-
-
     } catch (error) {
       setErr(true);
     }  
@@ -77,13 +75,13 @@ const Register = () => {
   return (
     <div className="formContainer">
     <div className="formWrapper">
-      <span className="logo">Lama Chat</span>
+      <span className="logo">Zaw Chat</span>
       <span className="title">Register</span>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="display name" />
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="password" />
-        <input style={{ display: "none" }} type="file" id="file" />
+        <input type="text" placeholder="display name" required />
+        <input type="email" placeholder="email" required />
+        <input type="password" placeholder="password" required />
+        <input style={{ display: "none" }} type="file" id="file" required />
         <label htmlFor="file">
           <img src={Add} alt="" />
           <span>Add an avatar</span>
@@ -94,6 +92,7 @@ const Register = () => {
         You do have an account <Link to="/login">Login</Link>
       </p>
       { err && <p>Error occur</p>}
+      { passErr && <p> Password must have at least 8 words</p>}
     </div>
   </div>
   )

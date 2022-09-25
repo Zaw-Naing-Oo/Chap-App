@@ -7,7 +7,7 @@ const Navbar = () => {
   const auth = getAuth();
 
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <div className='navbar'>

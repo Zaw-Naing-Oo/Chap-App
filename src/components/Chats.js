@@ -34,7 +34,7 @@ const Chats = () => {
   }, [currentUser.uid]);
 
   // console.log(Object.entries(chats))
-  console.log(chats);
+  // console.log(chats);
 
 
   return (

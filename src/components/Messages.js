@@ -2,30 +2,33 @@ import React, { useContext, useEffect, useState } from 'react'
 import Message from './Message'
 import { ChatContext } from '../context/ChatContext'
 import { db } from '../firebase';
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 const Messages = () => {
 
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
-  console.log(data);
+  // console.log(data);
  
     useEffect(() => {
 
       const getMessages = async () => {
-        await onSnapshot(doc(db, "chats", data.chatId), (doc) => {
-          console.log(doc.data());
-          doc.exists() && setMessages(doc.data().messages);
-        });
-      }
+        const docRef = doc(db, "chats", data.chatId);
+        const docSnap = await getDoc(docRef);
 
-      return () => {
-        getMessages();
+        if (docSnap.exists()) {
+          // console.log("Document data:", docSnap.data());
+          setMessages(docSnap.data().messages);
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
       }
+      getMessages();
 
     }, [data.chatId]);
 
-    console.log(messages);  
+    // console.log(messages);  
 
     return (
       <div className='messages'>
